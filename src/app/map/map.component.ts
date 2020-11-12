@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import {statesData} from './js/us-states'
 import {mexData} from './js/mex-states'
+import {mexMunicipiosData} from './js/mex-municipios'
 
 @Component({
   selector: 'app-map',
@@ -23,7 +24,7 @@ private initMap():void{
 
 this.map = L.map('map').setView([25, -90],6);
 L.geoJson(statesData).addTo(this.map);
-L.geoJson(mexData).addTo(this.map);
+L.geoJson(mexMunicipiosData).addTo(this.map);
 
 
 const tiles = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
