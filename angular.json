@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "mapa"
+    }
+  },
+  "defaultProject": "mapa",
+  "cli": {
+    "analytics": false
+  }
 }
