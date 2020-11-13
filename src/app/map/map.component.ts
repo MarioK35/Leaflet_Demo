@@ -3,7 +3,7 @@ import * as L from 'leaflet';
 import {statesData} from './js/us-states'
 import {mexData} from './js/mex-states'
 import {mexMunicipiosData} from './js/mex-municipios'
-
+import {countiesData} from './js/us-counties'
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -20,10 +20,17 @@ private est;
  }
 private initMap():void{
   
-
+  function popup(feature, layer) { 
+    if (feature.properties && feature.properties.NAME) 
+    { 
+    layer.bindPopup(feature.properties.NAME); 
+    } 
+    }
+   
+  
 
 this.map = L.map('map').setView([25, -90],6);
-L.geoJson(statesData).addTo(this.map);
+L.geoJson(countiesData).addTo(this.map);
 L.geoJson(mexMunicipiosData).addTo(this.map);
 
 
