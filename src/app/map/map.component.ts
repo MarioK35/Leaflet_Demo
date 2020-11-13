@@ -52,7 +52,12 @@ function popup(feature, layer) {
   layer.bindPopup("<h2>Name: "+feature.properties.name+ "</h2>"+"<h2>Density: "+feature.properties.density+ "</h2>"); 
   } 
   }
-
+  function popupMX(feature, layer) { 
+    if (feature.properties && feature.properties.mun_name) 
+    { 
+    layer.bindPopup("<h2>Name: "+feature.properties.mun_name); 
+    } 
+    }
 
 this.map = L.map('map').setView([25, -90],6);
 
@@ -62,7 +67,7 @@ const tiles = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}
 });
 
 L.geoJson(countiesData).addTo(this.map);
-L.geoJson(mexMunicipiosData).addTo(this.map);
+L.geoJson(mexMunicipiosData,{onEachFeature: popupMX }).addTo(this.map);
 L.geoJson(statesData, {style: style, onEachFeature: popup }).addTo(this.map);
 tiles.addTo(this.map)
 }
