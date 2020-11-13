@@ -44,20 +44,34 @@ function style(feature) {
       fillOpacity: 0.7
   };
 }
+;
+  
+ 
+
 
 
 function popup(feature, layer) { 
   if (feature.properties && feature.properties.name) 
   { 
+    
   layer.bindPopup("<h2>Name: "+feature.properties.name+ "</h2>"+"<h2>Density: "+feature.properties.density+ "</h2>"); 
-  } 
+  layer.on('mouseover', function (e) {
+    this.openPopup();
+});
+} 
   }
+
   function popupMX(feature, layer) { 
     if (feature.properties && feature.properties.mun_name) 
     { 
     layer.bindPopup("<h2>Name: "+feature.properties.mun_name); 
+    layer.on('mouseover', function (e) {
+      this.openPopup();
+  });
     } 
     }
+    
+
 
 this.map = L.map('map').setView([25, -90],6);
 
@@ -65,6 +79,7 @@ const tiles = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}
 	maxZoom: 20,
 	attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
 });
+
 
 L.geoJson(countiesData).addTo(this.map);
 L.geoJson(mexMunicipiosData,{onEachFeature: popupMX }).addTo(this.map);
